@@ -1,0 +1,22 @@
+{
+  "name": "file_storage_odm",
+  "version": "1.0",
+  "description": {
+    "en": "ODM File Storage",
+    "ru": "ODM File Storage",
+    "uk": "ODM File Storage"
+  },
+  "url": "https://github.com/pytsite/plugin-file_storage_odm",
+  "author": {
+    "name": "Alexander Shepetko",
+    "email": "a@shepetko.com",
+    "url": "https://shepetko.com"
+  },
+  "requires": {
+    "packages": [],
+    "plugins": [
+      "file",
+      "odm"
+    ]
+  }
+}
