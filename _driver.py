@@ -1,4 +1,4 @@
-"""PytSite ODM File Storage Driver.
+"""PytSite ODM File Storage Driver
 """
 import os as _os
 import re as _re

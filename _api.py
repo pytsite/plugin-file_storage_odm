@@ -1,4 +1,4 @@
-"""PytSite ODM File Storage API Functions.
+"""PytSite ODM File Storage Plugin API Functions
 """
 from pytsite import reg as _reg
 
