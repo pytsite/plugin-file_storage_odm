@@ -17,7 +17,7 @@ def _init():
     odm.register_model('file', _model.AnyFileODMEntity)
     odm.register_model('file_image', _model.ImageFileODMEntity)
 
-    router.handle(_controllers.Image(), '/image/resize/<int:width>/<int:height>/<p1>/<p2>/<filename>',
+    router.handle(_controllers.Image, '/image/resize/<int:width>/<int:height>/<p1>/<p2>/<filename>',
                   'file_storage_odm@image', defaults={'width': 0, 'height': 0})
 
 
