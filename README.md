@@ -4,6 +4,11 @@
 ## Changelog
 
 
+### 1.3 (2018-01-02)
+
+Cleanup of obsolete static files added.
+
+
 ### 1.2 (2017-12-13)
 
 Support for PytSite-7.0.
