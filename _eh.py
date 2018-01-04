@@ -13,7 +13,7 @@ def pytsite_cleanup():
     root = _path.join(_reg.get('paths.static'), 'image', 'resize')
     ttl = _reg.get('file_storage_odm.static_ttl', 2592000)  # 1 month
 
-    success, failed = _util.remove_obsolete_files(root, ttl)
+    success, failed = _util.cleanup_files(root, ttl)
 
     for f_path in success:
         _logger.debug('Obsolete static file removed: {}'.format(f_path))
