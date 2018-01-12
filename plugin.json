@@ -1,6 +1,6 @@
 {
   "name": "file_storage_odm",
-  "version": "1.3.1",
+  "version": "1.3.2",
   "description": {
     "en": "ODM File Storage",
     "ru": "ODM File Storage",
@@ -16,7 +16,7 @@
     "packages": [],
     "plugins": [
       "file",
-      "odm"
+      "odm>=1.4"
     ]
   }
 }

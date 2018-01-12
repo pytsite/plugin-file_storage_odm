@@ -43,7 +43,7 @@ class AnyFileODMEntity(_odm.model.Entity):
         """
         # File UID
         if field_name == 'uid':
-            return self.ref_str
+            return self.manual_ref
 
         # Absolute file path on the filesystem
         elif field_name == 'local_path':
