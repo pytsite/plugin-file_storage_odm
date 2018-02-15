@@ -1,15 +1,15 @@
 """PytSite ODM File Storage Controllers
 """
+__author__ = 'Alexander Shepetko'
+__email__ = 'a@shepetko.com'
+__license__ = 'MIT'
+
 from os import path as _path, makedirs as _makedirs
 from math import floor as _floor
 from PIL import Image as _Image
 from pytsite import reg as _reg, router as _router, routing as _routing
 from plugins import file as _file
 from . import _model, _api
-
-__author__ = 'Alexander Shepetko'
-__email__ = 'a@shepetko.com'
-__license__ = 'MIT'
 
 
 class Image(_routing.Controller):

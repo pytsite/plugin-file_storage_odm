@@ -1,12 +1,12 @@
 """PytSite ODM File Storage Fields.
 """
-from typing import Optional as _Optional, List as _List, Tuple as _Tuple
-from bson import DBRef as _DBRef
-from plugins import file as _file, odm as _odm
-
 __author__ = 'Alexander Shepetko'
 __email__ = 'a@shepetko.com'
 __license__ = 'MIT'
+
+from typing import Optional as _Optional, List as _List, Tuple as _Tuple
+from bson import DBRef as _DBRef
+from plugins import file as _file, odm as _odm
 
 
 def _sanitize_finder_arg(arg):
@@ -63,7 +63,10 @@ class AnyFile(_odm.field.Abstract):
         super().__init__(name, **kwargs)
 
     def _on_get(self, value: str, **kwargs) -> _Optional[_file.model.AbstractFile]:
-        return _get_file(value) if value else None
+        try:
+            return _get_file(value) if value else None
+        except _file.error.FileNotFound():
+            return None
 
     def _on_set(self, value, **kwargs) -> _Optional[str]:
         """Hook
@@ -83,7 +86,7 @@ class AnyFile(_odm.field.Abstract):
 
         # Check file's MIME type
         if self._allowed_mime_group != '*' and not file.mime.startswith(self._allowed_mime_group):
-            raise TypeError("File MIME '{}' is not allowed here".format(self._file.mime))
+            raise TypeError("File MIME '{}' is not allowed here".format(file.mime))
 
         return file.uid
 
@@ -105,7 +108,15 @@ class AnyFiles(_odm.field.List):
         super().__init__(name, allowed_types=(_file.model.AbstractFile, str), **kwargs)
 
     def _on_get(self, internal_value: _List[str], **kwargs) -> _Tuple[_file.model.AbstractFile, ...]:
-        return tuple([_get_file(v) for v in internal_value])
+        r = []
+
+        for v in internal_value:
+            try:
+                r.append(_get_file(v))
+            except _file.error.FileNotFound:
+                pass
+
+        return tuple(r)
 
     def _on_set(self, value, **kwargs) -> _List[str]:
         """Hook. Transforms externally set value to internal value.

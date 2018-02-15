@@ -4,6 +4,11 @@
 ## Changelog
 
 
+### 1.3.3 (2018-02-15)
+
+Fixed processing missing files in `field`.
+
+
 ### 1.3.2 (2018-01-12)
 
 Support for `odm` 1.4.

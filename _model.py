@@ -1,15 +1,15 @@
 """PytSite ODM File Storage Models.
 """
+__author__ = 'Alexander Shepetko'
+__email__ = 'a@shepetko.com'
+__license__ = 'MIT'
+
 import exifread as _exifread
 from os import unlink as _unlink, path as _path
 from PIL import Image as _PILImage
 from pytsite import reg as _reg, router as _router
 from plugins import odm as _odm, file as _file
 from . import _api
-
-__author__ = 'Alexander Shepetko'
-__email__ = 'a@shepetko.com'
-__license__ = 'MIT'
 
 
 class AnyFileODMEntity(_odm.model.Entity):

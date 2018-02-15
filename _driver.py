@@ -1,5 +1,9 @@
 """PytSite ODM File Storage Driver
 """
+__author__ = 'Alexander Shepetko'
+__email__ = 'a@shepetko.com'
+__license__ = 'MIT'
+
 import os as _os
 import re as _re
 import shutil as _shutil
@@ -8,11 +12,6 @@ from mimetypes import guess_extension as _guess_extension
 from pytsite import reg as _reg, util as _util
 from plugins import odm as _odm, file as _file
 from . import _model
-
-
-__author__ = 'Alexander Shepetko'
-__email__ = 'a@shepetko.com'
-__license__ = 'MIT'
 
 
 def _build_store_path(mime: str, propose: str = None) -> str:
