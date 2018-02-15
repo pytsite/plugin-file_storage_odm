@@ -65,7 +65,7 @@ class AnyFile(_odm.field.Abstract):
     def _on_get(self, value: str, **kwargs) -> _Optional[_file.model.AbstractFile]:
         try:
             return _get_file(value) if value else None
-        except _file.error.FileNotFound():
+        except _file.error.FileNotFound:
             return None
 
     def _on_set(self, value, **kwargs) -> _Optional[str]:
