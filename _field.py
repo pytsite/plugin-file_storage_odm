@@ -68,19 +68,19 @@ class AnyFile(_odm.field.Abstract):
         except _file.error.FileNotFound:
             return None
 
-    def _on_set(self, value, **kwargs) -> _Optional[str]:
+    def _on_set(self, raw_value, **kwargs) -> _Optional[str]:
         """Hook
         """
-        # Extract first file from a list or tuple
-        if isinstance(value, (list, tuple)):
-            value = value[0] if value else None
-
-        if not value:
+        if not raw_value:
             return None
+
+        # Extract first file from a list or tuple
+        if isinstance(raw_value, (list, tuple)):
+            raw_value = raw_value[0] if raw_value else None
 
         # Check file entity's existence
         try:
-            file = _get_file(value)
+            file = _get_file(raw_value)
         except _file.error.FileNotFound:
             return None
 
@@ -121,6 +121,9 @@ class AnyFiles(_odm.field.List):
     def _on_set(self, value, **kwargs) -> _List[str]:
         """Hook. Transforms externally set value to internal value.
         """
+        if value is None:
+            return []
+
         if not isinstance(value, (list, tuple)):
             value = [value]
 

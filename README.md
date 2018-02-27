@@ -4,6 +4,11 @@
 ## Changelog
 
 
+### 1.3.5 (2018-02-27)
+
+Fields bugfix.
+
+
 ### 1.3.4 (2018-02-15)
 
 Typo fixed.
