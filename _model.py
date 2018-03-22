@@ -138,17 +138,23 @@ class ImageFileODMEntity(AnyFileODMEntity):
         """Hook.
         """
         if field_name == 'url':
+            enlarge = kwargs.get('enlarge', True)
+
             try:
                 width = abs(int(kwargs.get('width', 0)))
+                if width:
+                    if not enlarge and width > self.f_get('width'):
+                        width = self.f_get(self.f_get('width'))
+                    width = _api.align_image_side(width, _api.get_image_resize_limit_width())
+
                 height = abs(int(kwargs.get('height', 0)))
-                if width or height:
-                    if width:
-                        width = _api.align_image_side(width, _api.get_image_resize_limit_width())
-                    if height:
-                        height = _api.align_image_side(height, _api.get_image_resize_limit_height())
+                if height:
+                    if not enlarge and height > self.f_get('height'):
+                        height = self.f_get(self.f_get('height'))
+                    height = _api.align_image_side(height, _api.get_image_resize_limit_height())
 
             except ValueError:
-                raise ValueError('Width and height should be positive integers.')
+                raise ValueError('Width and height should be positive integers')
 
             uid = str(self.id)
             extension = _path.splitext(self.f_get('path'))[1]

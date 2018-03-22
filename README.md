@@ -4,6 +4,11 @@
 ## Changelog
 
 
+### 1.4 (2018-03-22)
+
+`enlarge` argument support added to `ImageFile.get_url()`.
+
+
 ### 1.3.5 (2018-02-27)
 
 Fields bugfix.
