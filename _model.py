@@ -164,7 +164,7 @@ class ImageFileODMEntity(AnyFileODMEntity):
                 'p1': uid[:2],
                 'p2': uid[2:4],
                 'filename': '{}{}'.format(uid, extension)
-            }, strip_lang=True)
+            }, add_lang_prefix=False)
 
         elif field_name == 'thumb_url':
             return self.f_get('url', width=kwargs.get('width', 450), height=kwargs.get('height', 450))

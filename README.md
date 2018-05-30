@@ -4,6 +4,11 @@
 ## Changelog
 
 
+### 1.5 (2018-05-30)
+
+Support for `pytsite-7.23`.
+
+
 ### 1.4 (2018-03-22)
 
 `enlarge` argument support added to `ImageFile.get_url()`.
@@ -31,7 +36,7 @@ Support for `odm` 1.4.
 
 ### 1.3.1 (2018-01-04)
 
-Support for PytSite 7.4.1.
+Support for `pytsite-7.4.1`.
 
 
 ### 1.3 (2018-01-02)
@@ -41,7 +46,7 @@ Cleanup of obsolete static files added.
 
 ### 1.2 (2017-12-13)
 
-Support for PytSite-7.0.
+Support for `pytsite-7.0`.
 
 
 ### 1.1.1 (2017-12-07)
@@ -51,7 +56,7 @@ Fixed init code.
 
 ### 1.1 (2017-12-02)
 
-Support for PytSite-6.1.
+Support for `pytsite-6.1`.
 
 
 ### 1.0.1 (2017-11-27)

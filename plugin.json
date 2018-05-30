@@ -1,6 +1,6 @@
 {
   "name": "file_storage_odm",
-  "version": "1.4",
+  "version": "1.5",
   "description": {
     "en": "ODM File Storage",
     "ru": "ODM File Storage",
@@ -13,7 +13,7 @@
     "url": "https://shepetko.com"
   },
   "requires": {
-    "packages": [],
+    "pytsite": ">=7.23",
     "plugins": [
       "file",
       "odm>=1.4"
