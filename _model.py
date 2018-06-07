@@ -51,7 +51,7 @@ class AnyFileODMEntity(_odm.model.Entity):
 
         # File download URL
         elif field_name in ('url', 'thumb_url'):
-            raise NotImplementedError('This type of file cannot be downloaded.')
+            return _router.rule_url('file@download', {'uid': self.manual_ref})
 
         else:
             return super()._on_f_get(field_name, value, **kwargs)
