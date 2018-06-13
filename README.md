@@ -4,6 +4,11 @@
 ## Changelog
 
 
+### 1.7 (2018-06-13)
+
+Support of `file-1.5`.
+
+
 ### 1.6 (2018-06-07)
 
 Support of `file-1.4`.

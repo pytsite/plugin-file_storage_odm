@@ -70,22 +70,22 @@ class Image(_routing.Controller):
             resize_height = requested_height
 
         # Checking source file
-        source_local_path = img_file.get_field('local_path')
-        if not _path.exists(source_local_path):
+        storage_path = img_file.get_field('storage_path')
+        if not _path.exists(storage_path):
             return self.redirect('http://placehold.it/{}x{}'.format(requested_width, requested_height))
 
         # Calculating target file location
-        target_local_path = _path.join(_reg.get('paths.static'), 'image', 'resize', str(requested_width),
-                                       str(requested_height), p1, p2, filename)
+        static_path = _path.join(_reg.get('paths.static'), 'image', 'resize', str(requested_width),
+                                 str(requested_height), p1, p2, filename)
 
         # Create target directory
-        target_dir = _path.dirname(target_local_path)
+        target_dir = _path.dirname(static_path)
         if not _path.exists(target_dir):
             _makedirs(target_dir, 0o755, True)
 
-        if not _path.exists(target_local_path):
+        if not _path.exists(static_path):
             # Open source image
-            img = _Image.open(source_local_path)  # type: _Image
+            img = _Image.open(storage_path)  # type: _Image
 
             # Resize
             if need_resize:
@@ -109,7 +109,7 @@ class Image(_routing.Controller):
                 # Resize
                 img = cropped.resize((resize_width, resize_height), _Image.BILINEAR)
 
-            img.save(target_local_path)
+            img.save(static_path)
             img.close()
 
         return self.redirect(img_file.get_url(width=requested_width, height=requested_height))

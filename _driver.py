@@ -13,30 +13,25 @@ from pytsite import reg as _reg, util as _util
 from plugins import odm as _odm, file as _file
 from . import _model
 
+_IMG_MIME_RE = _re.compile('image/(bmp|gif|jpeg|tiff|x-icon|png)$')
 
-def _build_store_path(mime: str, propose: str = None) -> str:
+
+def _build_store_path(name: str, mime: str, propose: str = None) -> str:
     """Build unique path to store file on the filesystem.
     """
-    extension = _guess_extension(mime)
-    storage_dir = _os.path.join(_reg.get('paths.storage'), 'file', 'other')
-    store_path = ''
+    storage_dir = _os.path.join(_reg.get('paths.storage'), 'file', mime.split('/')[0])
+    ext = _os.path.splitext(name)[1]
     rnd_str = _util.random_str
 
-    # Determine extension for the file in the storage
-    if mime.startswith('image'):
-        storage_dir = _os.path.join(_reg.get('paths.storage'), 'file', 'image')
-        if extension == '.jpe':
-            extension = '.jpg'
-
     # Possible (but not final) path
-    possible_target_path = _os.path.join(storage_dir, rnd_str(2), rnd_str(2), rnd_str()) + extension
+    possible_target_path = _os.path.join(storage_dir, rnd_str(2), rnd_str(2), rnd_str()) + ext
 
     # Check if the proposed path suits the requirements
     if propose:
         m = _re.match('(\w{2})/(\w{2})/(\w{16})(\.\w+)$', propose)
         if m:
-            extension = m.group(4)
-            possible_target_path = _os.path.join(storage_dir, m.group(1), m.group(2), m.group(3)) + extension
+            ext = m.group(4)
+            possible_target_path = _os.path.join(storage_dir, m.group(1), m.group(2), m.group(3)) + ext
 
     # Search for path which doesn't exist on the filesystem
     while True:
@@ -44,7 +39,7 @@ def _build_store_path(mime: str, propose: str = None) -> str:
             store_path = possible_target_path
             break
         else:
-            possible_target_path = _os.path.join(storage_dir, rnd_str(2), rnd_str(2), rnd_str()) + extension
+            possible_target_path = _os.path.join(storage_dir, rnd_str(2), rnd_str(2), rnd_str()) + ext
 
     return store_path
 
@@ -53,8 +48,12 @@ class Driver(_file.driver.Abstract):
     def create(self, file_path: str, mime: str, name: str = None, description: str = None, propose_path: str = None,
                **kwargs) -> _file.model.AbstractFile:
 
-        # Generating unique file path in storage
-        abs_target_path = _build_store_path(mime, propose_path)
+        # Generate unique file path in storage
+        # Determine extension from MIME
+        if not _os.path.splitext(name):
+            name += _guess_extension(mime)
+
+        abs_target_path = _build_store_path(name, mime, propose_path)
 
         # Make sure that directory on the filesystem exists
         target_dir = _os.path.dirname(abs_target_path)
@@ -65,7 +64,7 @@ class Driver(_file.driver.Abstract):
         _shutil.copy(file_path, abs_target_path)
 
         # Create ODM entity
-        if mime.startswith('image'):
+        if _IMG_MIME_RE.search(mime):
             odm_entity = _odm.dispense('file_image')  # type: _model.ImageFileODMEntity
         else:
             odm_entity = _odm.dispense('file')  # type: _model.AnyFileODMEntity
