@@ -163,7 +163,7 @@ class ImageFileODMEntity(AnyFileODMEntity):
             }, add_lang_prefix=False)
 
         elif field_name == 'thumb_url':
-            return self.f_get('url', width=kwargs.get('width', 450), height=kwargs.get('height', 450))
+            return self.f_get('url', width=kwargs.get('thumb_width', 500), height=kwargs.get('thumb_height', 500))
 
         else:
             return super()._on_f_get(field_name, value, **kwargs)

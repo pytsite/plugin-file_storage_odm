@@ -4,6 +4,11 @@
 ## Changelog
 
 
+### 1.7.1 (2018-07-29)
+
+Arguments names fixed.
+
+
 ### 1.7 (2018-06-13)
 
 Support of `file-1.5`.
