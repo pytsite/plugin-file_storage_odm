@@ -4,6 +4,11 @@
 ## Changelog
 
 
+### 1.7.2 (2018-09-08)
+
+Processing of JPEG2000 files fixed.
+
+
 ### 1.7.1 (2018-07-29)
 
 Arguments names fixed.

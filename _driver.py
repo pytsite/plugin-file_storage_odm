@@ -13,7 +13,7 @@ from pytsite import reg as _reg, util as _util
 from plugins import odm as _odm, file as _file
 from . import _model
 
-_IMG_MIME_RE = _re.compile('image/(bmp|gif|jpeg|tiff|x-icon|png)$')
+_IMG_MIME_RE = _re.compile('image/(bmp|gif|jpeg|jp2|jpx|jpm|tiff|x-icon|png)$')
 
 
 def _build_store_path(name: str, mime: str, propose: str = None) -> str:

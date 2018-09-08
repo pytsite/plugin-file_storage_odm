@@ -5,6 +5,7 @@ __email__ = 'a@shepetko.com'
 __license__ = 'MIT'
 
 import exifread as _exifread
+import re as _re
 from os import unlink as _unlink, path as _path
 from PIL import Image as _PILImage
 from pytsite import reg as _reg, router as _router
@@ -111,12 +112,12 @@ class ImageFileODMEntity(AnyFileODMEntity):
                 rotated.save(self.f_get('storage_path'))
                 image = rotated
 
-        # Convert BMP to JPEG
-        if image.format == 'BMP':
+        # Convert BMP and JPEG2000 to JPEG
+        if image.format in ('BMP', 'JPEG2000'):
             current_storage_path = self.f_get('storage_path')
 
             # Change path and MIME info
-            new_path = self.f_get('path').replace('.bmp', '.jpg')
+            new_path = _re.sub('\.\w+$', '.jpg', self.f_get('path'))
             if not new_path.endswith('.jpg'):
                 new_path += '.jpg'
             self.f_set('path', new_path)
