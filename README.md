@@ -4,6 +4,11 @@
 ## Changelog
 
 
+### 1.8 (2018-09-14)
+
+Support of `odm-1.4`.
+
+
 ### 1.7.2 (2018-09-08)
 
 Processing of JPEG2000 files fixed.
@@ -51,7 +56,7 @@ Fixed processing missing files in `field`.
 
 ### 1.3.2 (2018-01-12)
 
-Support for `odm` 1.4.
+Support for `odm-1.4`.
 
 
 ### 1.3.1 (2018-01-04)
