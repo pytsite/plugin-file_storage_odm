@@ -4,6 +4,11 @@
 ## Changelog
 
 
+### 2.1 (2019-03-04)
+
+Support of `odm-6.0`.
+
+
 ### 2.0 (2018-10-08)
 
 Support of `pytsite-8.x`.

@@ -22,16 +22,16 @@ class AnyFileODMEntity(_odm.model.Entity):
         """_setup() hook.
         """
         self.define_field(_odm.field.Virtual('uid'))
-        self.define_field(_odm.field.String('path', required=True))
-        self.define_field(_odm.field.String('name', required=True))
+        self.define_field(_odm.field.String('path', is_required=True))
+        self.define_field(_odm.field.String('name', is_required=True))
         self.define_field(_odm.field.String('description'))
-        self.define_field(_odm.field.String('mime', required=True))
-        self.define_field(_odm.field.Integer('length', required=True))
+        self.define_field(_odm.field.String('mime', is_required=True))
+        self.define_field(_odm.field.Integer('length', is_required=True))
         self.define_field(_odm.field.Virtual('storage_path'))
         self.define_field(_odm.field.Virtual('url'))
         self.define_field(_odm.field.Virtual('thumb_url'))
 
-    def _after_delete(self, **kwargs):
+    def _on_after_delete(self, **kwargs):
         """_after_delete() hook.
         """
         # Remove file from the storage
@@ -80,10 +80,10 @@ class ImageFileODMEntity(AnyFileODMEntity):
         self.define_field(_odm.field.Integer('height'))
         self.define_field(_odm.field.Dict('exif'))
 
-    def _pre_save(self, **kwargs):
+    def _on_pre_save(self, **kwargs):
         """Hook.
         """
-        super()._pre_save(**kwargs)
+        super()._on_pre_save(**kwargs)
 
         # Read EXIF from file
         with open(self.f_get('storage_path'), 'rb') as f:

@@ -51,7 +51,7 @@ def _get_file(value) -> _file.model.AbstractFile:
         raise TypeError('File object, string UID or dict expected, got {}'.format(type(value)))
 
 
-class AnyFile(_odm.field.Abstract):
+class AnyFile(_odm.field.Base):
     """ODM field to store reference to an file
     """
 
