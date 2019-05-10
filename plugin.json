@@ -1,6 +1,6 @@
 {
   "name": "file_storage_odm",
-  "version": "2.1",
+  "version": "2.2",
   "description": {
     "en": "ODM File Storage",
     "ru": "ODM File Storage",
@@ -16,7 +16,7 @@
     "pytsite": ">=8.9",
     "plugins": {
       "file": "^1.0",
-      "odm": "^6.0"
+      "odm": "^6.7"
     }
   }
 }

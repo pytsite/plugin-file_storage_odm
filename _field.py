@@ -143,23 +143,25 @@ class AnyFiles(_odm.field.List):
 
         return clean_value
 
-    def _on_add(self, internal_value: _List[str], raw_value_to_add, **kwargs):
-        """Hook.
+    def _on_add(self, internal_value: tuple, raw_value_to_add, **kwargs):
+        """Hook
         """
         file = _get_file(raw_value_to_add)
 
         if self._allowed_mime_group != '*' and not file.mime.startswith(self._allowed_mime_group):
-            raise TypeError("File MIME '{}' is not allowed here.".format(file.mime))
+            raise TypeError("File MIME '{}' is not allowed here".format(file.mime))
 
-        return super()._on_add(internal_value, file.uid)
+        return super()._on_add(internal_value, file)
 
-    def _on_sub(self, internal_value: _List[str], raw_value_to_sub, **kwargs):
+    def _on_sub(self, internal_value: tuple, raw_value_to_sub, **kwargs):
+        """Hook
+        """
         file = _get_file(raw_value_to_sub)
 
         if self._allowed_mime_group != '*' and not file.mime.startswith(self._allowed_mime_group):
-            raise TypeError("File MIME '{}' is not allowed here.".format(file.mime))
+            raise TypeError("File MIME '{}' is not allowed here".format(file.mime))
 
-        return super()._on_sub(internal_value, file.uid)
+        return super()._on_sub(internal_value, file)
 
     def sanitize_finder_arg(self, arg):
         """Hook. Used for sanitizing Finder's query argument.
