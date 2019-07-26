@@ -3,6 +3,12 @@
 
 ## Changelog
 
+
+### 2.2.1 (2019-07-26)
+
+`plugin.json` fixed.
+
+
 ### 2.2 (2019-05-10)
 
 Support of `odm-6.7`.
